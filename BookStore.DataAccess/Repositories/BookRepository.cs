@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.DataAccess.Repositories
 {
-    public class BooksRepository : IBooksRepository
+    public class BookRepository : IBookRepository
     {
         private readonly BookStoreDbContext _dbContext;
 
-        public BooksRepository(BookStoreDbContext dbContext)
+        public BookRepository(BookStoreDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -22,6 +22,7 @@ namespace BookStore.DataAccess.Repositories
                 .ToList();
             return books;
         }
+        //Асинхронный метод получения элемента Book из базы данных
         public async Task<Book> Get(Guid bookID)
         {
             BookEntity bookEntity = await _dbContext.Books.FirstOrDefaultAsync(b => b.BookID == bookID);
@@ -45,6 +46,7 @@ namespace BookStore.DataAccess.Repositories
             await _dbContext.SaveChangesAsync();
             return bookEntity.BookID;
         }
+        //Асинхронный метод обновления данных книги в базе данных
         public async Task<Guid> Update(Guid bookID, string title, string description, decimal price)
         {
             await _dbContext.Books
@@ -55,6 +57,7 @@ namespace BookStore.DataAccess.Repositories
                 .SetProperty(b => b.BookPrice, b => price));
             return bookID;
         }
+        //Асинхронный метод удаления книги из базы данных
         public async Task<Guid> Delete(Guid bookID)
         {
             await _dbContext.Books

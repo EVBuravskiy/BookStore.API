@@ -2,7 +2,7 @@
 
 namespace BookStore.DataAccess.Repositories
 {
-    public interface IBooksRepository
+    public interface IBookRepository
     {
         Task<Guid> Create(Book book);
         Task<Guid> Delete(Guid bookID);
