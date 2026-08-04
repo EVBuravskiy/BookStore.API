@@ -8,7 +8,8 @@ namespace BookStore.DataAccess
         public DbSet<BookEntity> Books { get; set; } = null!;
 
         public BookStoreDbContext(DbContextOptions<BookStoreDbContext> options) : base(options) 
-        { 
+        {
+            Database.EnsureCreated();
         }
     }
 }
