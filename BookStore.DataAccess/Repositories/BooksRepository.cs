@@ -34,9 +34,11 @@ namespace BookStore.DataAccess.Repositories
         }
         public async Task<Guid> Create(Book book)
         {
+            //Для проверки
+            var id = book.BookID;
             BookEntity bookEntity = new BookEntity()
             {
-                BookID = book.BookID,
+                //BookID = book.BookID,
                 BookTitle = book.Title,
                 BookDescription = book.Description,
                 BookPrice = book.Price,
