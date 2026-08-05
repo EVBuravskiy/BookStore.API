@@ -40,7 +40,7 @@ app.MapControllers();
 app.UseCors(options =>
 {
     options.WithHeaders().AllowAnyHeader();
-    options.AllowAnyOrigin();
+    options.WithOrigins().AllowAnyOrigin();
     options.WithMethods().AllowAnyMethod();
 });
 
